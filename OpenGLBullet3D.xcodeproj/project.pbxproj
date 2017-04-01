@@ -1,0 +1,617 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E9F92E1B1E8F33E200D72A4F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F92E1A1E8F33E200D72A4F /* main.m */; };
+		E9F92E1E1E8F33E200D72A4F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F92E1D1E8F33E200D72A4F /* AppDelegate.m */; };
+		E9F92E281E8F33E200D72A4F /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F92E271E8F33E200D72A4F /* GameViewController.m */; };
+		E9F92E2B1E8F33E200D72A4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9F92E291E8F33E200D72A4F /* Main.storyboard */; };
+		E9F92E2D1E8F33E200D72A4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9F92E2C1E8F33E200D72A4F /* Assets.xcassets */; };
+		E9F92E301E8F33E200D72A4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9F92E2E1E8F33E200D72A4F /* LaunchScreen.storyboard */; };
+		E9F92E3B1E8F33E200D72A4F /* OpenGLBullet3DTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F92E3A1E8F33E200D72A4F /* OpenGLBullet3DTests.m */; };
+		E9F92E461E8F33E200D72A4F /* OpenGLBullet3DUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F92E451E8F33E200D72A4F /* OpenGLBullet3DUITests.m */; };
+		E9F92E551E8F34FA00D72A4F /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = E9F92E531E8F34FA00D72A4F /* Shader.fsh */; };
+		E9F92E561E8F34FA00D72A4F /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = E9F92E541E8F34FA00D72A4F /* Shader.vsh */; };
+		E9F92E651E8F5B4900D72A4F /* BulletPhysics.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9F92E641E8F5B4900D72A4F /* BulletPhysics.mm */; };
+		E9F92EAC1E8F633900D72A4F /* BulletCollision in Resources */ = {isa = PBXBuildFile; fileRef = E9F92EA91E8F633900D72A4F /* BulletCollision */; };
+		E9F92EAD1E8F633900D72A4F /* BulletDynamics in Resources */ = {isa = PBXBuildFile; fileRef = E9F92EAA1E8F633900D72A4F /* BulletDynamics */; };
+		E9F92EAE1E8F633900D72A4F /* LinearMath in Resources */ = {isa = PBXBuildFile; fileRef = E9F92EAB1E8F633900D72A4F /* LinearMath */; };
+		E9F92EB81E8F667D00D72A4F /* libBulletCollision_xcode4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F92EB51E8F667D00D72A4F /* libBulletCollision_xcode4.a */; };
+		E9F92EB91E8F667D00D72A4F /* libBulletDynamics_xcode4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F92EB61E8F667D00D72A4F /* libBulletDynamics_xcode4.a */; };
+		E9F92EBA1E8F667D00D72A4F /* libLinearMath_xcode4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F92EB71E8F667D00D72A4F /* libLinearMath_xcode4.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E9F92E371E8F33E200D72A4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E9F92E0E1E8F33E200D72A4F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E9F92E151E8F33E200D72A4F;
+			remoteInfo = OpenGLBullet3D;
+		};
+		E9F92E421E8F33E200D72A4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E9F92E0E1E8F33E200D72A4F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E9F92E151E8F33E200D72A4F;
+			remoteInfo = OpenGLBullet3D;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E9F92E161E8F33E200D72A4F /* OpenGLBullet3D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenGLBullet3D.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9F92E1A1E8F33E200D72A4F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E9F92E1C1E8F33E200D72A4F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E9F92E1D1E8F33E200D72A4F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E9F92E261E8F33E200D72A4F /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		E9F92E271E8F33E200D72A4F /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		E9F92E2A1E8F33E200D72A4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E9F92E2C1E8F33E200D72A4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E9F92E2F1E8F33E200D72A4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E9F92E311E8F33E200D72A4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9F92E361E8F33E200D72A4F /* OpenGLBullet3DTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenGLBullet3DTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9F92E3A1E8F33E200D72A4F /* OpenGLBullet3DTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenGLBullet3DTests.m; sourceTree = "<group>"; };
+		E9F92E3C1E8F33E200D72A4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9F92E411E8F33E200D72A4F /* OpenGLBullet3DUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenGLBullet3DUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9F92E451E8F33E200D72A4F /* OpenGLBullet3DUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenGLBullet3DUITests.m; sourceTree = "<group>"; };
+		E9F92E471E8F33E200D72A4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9F92E531E8F34FA00D72A4F /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
+		E9F92E541E8F34FA00D72A4F /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
+		E9F92E581E8F356800D72A4F /* readme.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = readme.txt; path = "OpenGLBullet3D/bullet-2.82-r2704/lib/readme.txt"; sourceTree = "<group>"; };
+		E9F92E5A1E8F358E00D72A4F /* libBulletCollision_xcode4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletCollision_xcode4.a; path = "OpenGLBullet3D/bullet-2.82-r2704/lib/libBulletCollision_xcode4.a"; sourceTree = "<group>"; };
+		E9F92E5B1E8F358E00D72A4F /* libBulletDynamics_xcode4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletDynamics_xcode4.a; path = "OpenGLBullet3D/bullet-2.82-r2704/lib/libBulletDynamics_xcode4.a"; sourceTree = "<group>"; };
+		E9F92E5C1E8F358E00D72A4F /* libLinearMath_xcode4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLinearMath_xcode4.a; path = "OpenGLBullet3D/bullet-2.82-r2704/lib/libLinearMath_xcode4.a"; sourceTree = "<group>"; };
+		E9F92E631E8F5B4900D72A4F /* BulletPhysics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletPhysics.h; sourceTree = "<group>"; };
+		E9F92E641E8F5B4900D72A4F /* BulletPhysics.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BulletPhysics.mm; sourceTree = "<group>"; };
+		E9F92EA71E8F633900D72A4F /* btBulletCollisionCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = btBulletCollisionCommon.h; path = OpenGLBullet3D/btBulletCollisionCommon.h; sourceTree = "<group>"; };
+		E9F92EA81E8F633900D72A4F /* btBulletDynamicsCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = btBulletDynamicsCommon.h; path = OpenGLBullet3D/btBulletDynamicsCommon.h; sourceTree = "<group>"; };
+		E9F92EA91E8F633900D72A4F /* BulletCollision */ = {isa = PBXFileReference; lastKnownFileType = folder; name = BulletCollision; path = OpenGLBullet3D/BulletCollision; sourceTree = "<group>"; };
+		E9F92EAA1E8F633900D72A4F /* BulletDynamics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = BulletDynamics; path = OpenGLBullet3D/BulletDynamics; sourceTree = "<group>"; };
+		E9F92EAB1E8F633900D72A4F /* LinearMath */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LinearMath; path = OpenGLBullet3D/LinearMath; sourceTree = "<group>"; };
+		E9F92EAF1E8F63AE00D72A4F /* libBulletCollision_xcode4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletCollision_xcode4.a; path = "../bullet-2.82-r2704/lib/libBulletCollision_xcode4.a"; sourceTree = "<group>"; };
+		E9F92EB01E8F63AE00D72A4F /* libBulletDynamics_xcode4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletDynamics_xcode4.a; path = "../bullet-2.82-r2704/lib/libBulletDynamics_xcode4.a"; sourceTree = "<group>"; };
+		E9F92EB11E8F63AE00D72A4F /* libLinearMath_xcode4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLinearMath_xcode4.a; path = "../bullet-2.82-r2704/lib/libLinearMath_xcode4.a"; sourceTree = "<group>"; };
+		E9F92EB51E8F667D00D72A4F /* libBulletCollision_xcode4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletCollision_xcode4.a; path = OpenGLBullet3D/Libs/libBulletCollision_xcode4.a; sourceTree = "<group>"; };
+		E9F92EB61E8F667D00D72A4F /* libBulletDynamics_xcode4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletDynamics_xcode4.a; path = OpenGLBullet3D/Libs/libBulletDynamics_xcode4.a; sourceTree = "<group>"; };
+		E9F92EB71E8F667D00D72A4F /* libLinearMath_xcode4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLinearMath_xcode4.a; path = OpenGLBullet3D/Libs/libLinearMath_xcode4.a; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E9F92E131E8F33E200D72A4F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9F92EB81E8F667D00D72A4F /* libBulletCollision_xcode4.a in Frameworks */,
+				E9F92EB91E8F667D00D72A4F /* libBulletDynamics_xcode4.a in Frameworks */,
+				E9F92EBA1E8F667D00D72A4F /* libLinearMath_xcode4.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9F92E331E8F33E200D72A4F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9F92E3E1E8F33E200D72A4F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E9F92E0D1E8F33E200D72A4F = {
+			isa = PBXGroup;
+			children = (
+				E9F92EA71E8F633900D72A4F /* btBulletCollisionCommon.h */,
+				E9F92EA81E8F633900D72A4F /* btBulletDynamicsCommon.h */,
+				E9F92EA91E8F633900D72A4F /* BulletCollision */,
+				E9F92EAA1E8F633900D72A4F /* BulletDynamics */,
+				E9F92EAB1E8F633900D72A4F /* LinearMath */,
+				E9F92E181E8F33E200D72A4F /* OpenGLBullet3D */,
+				E9F92E391E8F33E200D72A4F /* OpenGLBullet3DTests */,
+				E9F92E441E8F33E200D72A4F /* OpenGLBullet3DUITests */,
+				E9F92E171E8F33E200D72A4F /* Products */,
+				E9F92E571E8F356800D72A4F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		E9F92E171E8F33E200D72A4F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E9F92E161E8F33E200D72A4F /* OpenGLBullet3D.app */,
+				E9F92E361E8F33E200D72A4F /* OpenGLBullet3DTests.xctest */,
+				E9F92E411E8F33E200D72A4F /* OpenGLBullet3DUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E9F92E181E8F33E200D72A4F /* OpenGLBullet3D */ = {
+			isa = PBXGroup;
+			children = (
+				E9F92E631E8F5B4900D72A4F /* BulletPhysics.h */,
+				E9F92E641E8F5B4900D72A4F /* BulletPhysics.mm */,
+				E9F92E531E8F34FA00D72A4F /* Shader.fsh */,
+				E9F92E541E8F34FA00D72A4F /* Shader.vsh */,
+				E9F92E1C1E8F33E200D72A4F /* AppDelegate.h */,
+				E9F92E1D1E8F33E200D72A4F /* AppDelegate.m */,
+				E9F92E261E8F33E200D72A4F /* GameViewController.h */,
+				E9F92E271E8F33E200D72A4F /* GameViewController.m */,
+				E9F92E291E8F33E200D72A4F /* Main.storyboard */,
+				E9F92E2C1E8F33E200D72A4F /* Assets.xcassets */,
+				E9F92E2E1E8F33E200D72A4F /* LaunchScreen.storyboard */,
+				E9F92E311E8F33E200D72A4F /* Info.plist */,
+				E9F92E191E8F33E200D72A4F /* Supporting Files */,
+			);
+			path = OpenGLBullet3D;
+			sourceTree = "<group>";
+		};
+		E9F92E191E8F33E200D72A4F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E9F92E1A1E8F33E200D72A4F /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E9F92E391E8F33E200D72A4F /* OpenGLBullet3DTests */ = {
+			isa = PBXGroup;
+			children = (
+				E9F92E3A1E8F33E200D72A4F /* OpenGLBullet3DTests.m */,
+				E9F92E3C1E8F33E200D72A4F /* Info.plist */,
+			);
+			path = OpenGLBullet3DTests;
+			sourceTree = "<group>";
+		};
+		E9F92E441E8F33E200D72A4F /* OpenGLBullet3DUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E9F92E451E8F33E200D72A4F /* OpenGLBullet3DUITests.m */,
+				E9F92E471E8F33E200D72A4F /* Info.plist */,
+			);
+			path = OpenGLBullet3DUITests;
+			sourceTree = "<group>";
+		};
+		E9F92E571E8F356800D72A4F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E9F92EB51E8F667D00D72A4F /* libBulletCollision_xcode4.a */,
+				E9F92EB61E8F667D00D72A4F /* libBulletDynamics_xcode4.a */,
+				E9F92EB71E8F667D00D72A4F /* libLinearMath_xcode4.a */,
+				E9F92EAF1E8F63AE00D72A4F /* libBulletCollision_xcode4.a */,
+				E9F92EB01E8F63AE00D72A4F /* libBulletDynamics_xcode4.a */,
+				E9F92EB11E8F63AE00D72A4F /* libLinearMath_xcode4.a */,
+				E9F92E5A1E8F358E00D72A4F /* libBulletCollision_xcode4.a */,
+				E9F92E5B1E8F358E00D72A4F /* libBulletDynamics_xcode4.a */,
+				E9F92E5C1E8F358E00D72A4F /* libLinearMath_xcode4.a */,
+				E9F92E581E8F356800D72A4F /* readme.txt */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E9F92E151E8F33E200D72A4F /* OpenGLBullet3D */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E9F92E4A1E8F33E200D72A4F /* Build configuration list for PBXNativeTarget "OpenGLBullet3D" */;
+			buildPhases = (
+				E9F92E121E8F33E200D72A4F /* Sources */,
+				E9F92E131E8F33E200D72A4F /* Frameworks */,
+				E9F92E141E8F33E200D72A4F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenGLBullet3D;
+			productName = OpenGLBullet3D;
+			productReference = E9F92E161E8F33E200D72A4F /* OpenGLBullet3D.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E9F92E351E8F33E200D72A4F /* OpenGLBullet3DTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E9F92E4D1E8F33E200D72A4F /* Build configuration list for PBXNativeTarget "OpenGLBullet3DTests" */;
+			buildPhases = (
+				E9F92E321E8F33E200D72A4F /* Sources */,
+				E9F92E331E8F33E200D72A4F /* Frameworks */,
+				E9F92E341E8F33E200D72A4F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E9F92E381E8F33E200D72A4F /* PBXTargetDependency */,
+			);
+			name = OpenGLBullet3DTests;
+			productName = OpenGLBullet3DTests;
+			productReference = E9F92E361E8F33E200D72A4F /* OpenGLBullet3DTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E9F92E401E8F33E200D72A4F /* OpenGLBullet3DUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E9F92E501E8F33E200D72A4F /* Build configuration list for PBXNativeTarget "OpenGLBullet3DUITests" */;
+			buildPhases = (
+				E9F92E3D1E8F33E200D72A4F /* Sources */,
+				E9F92E3E1E8F33E200D72A4F /* Frameworks */,
+				E9F92E3F1E8F33E200D72A4F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E9F92E431E8F33E200D72A4F /* PBXTargetDependency */,
+			);
+			name = OpenGLBullet3DUITests;
+			productName = OpenGLBullet3DUITests;
+			productReference = E9F92E411E8F33E200D72A4F /* OpenGLBullet3DUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E9F92E0E1E8F33E200D72A4F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = carsonroscoe;
+				TargetAttributes = {
+					E9F92E151E8F33E200D72A4F = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = 7RKQS9TN9B;
+						ProvisioningStyle = Automatic;
+					};
+					E9F92E351E8F33E200D72A4F = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = 7RKQS9TN9B;
+						ProvisioningStyle = Automatic;
+						TestTargetID = E9F92E151E8F33E200D72A4F;
+					};
+					E9F92E401E8F33E200D72A4F = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = 7RKQS9TN9B;
+						ProvisioningStyle = Automatic;
+						TestTargetID = E9F92E151E8F33E200D72A4F;
+					};
+				};
+			};
+			buildConfigurationList = E9F92E111E8F33E200D72A4F /* Build configuration list for PBXProject "OpenGLBullet3D" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E9F92E0D1E8F33E200D72A4F;
+			productRefGroup = E9F92E171E8F33E200D72A4F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E9F92E151E8F33E200D72A4F /* OpenGLBullet3D */,
+				E9F92E351E8F33E200D72A4F /* OpenGLBullet3DTests */,
+				E9F92E401E8F33E200D72A4F /* OpenGLBullet3DUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E9F92E141E8F33E200D72A4F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9F92E551E8F34FA00D72A4F /* Shader.fsh in Resources */,
+				E9F92E2B1E8F33E200D72A4F /* Main.storyboard in Resources */,
+				E9F92E2D1E8F33E200D72A4F /* Assets.xcassets in Resources */,
+				E9F92E301E8F33E200D72A4F /* LaunchScreen.storyboard in Resources */,
+				E9F92EAD1E8F633900D72A4F /* BulletDynamics in Resources */,
+				E9F92E561E8F34FA00D72A4F /* Shader.vsh in Resources */,
+				E9F92EAC1E8F633900D72A4F /* BulletCollision in Resources */,
+				E9F92EAE1E8F633900D72A4F /* LinearMath in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9F92E341E8F33E200D72A4F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9F92E3F1E8F33E200D72A4F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E9F92E121E8F33E200D72A4F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9F92E281E8F33E200D72A4F /* GameViewController.m in Sources */,
+				E9F92E1E1E8F33E200D72A4F /* AppDelegate.m in Sources */,
+				E9F92E1B1E8F33E200D72A4F /* main.m in Sources */,
+				E9F92E651E8F5B4900D72A4F /* BulletPhysics.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9F92E321E8F33E200D72A4F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9F92E3B1E8F33E200D72A4F /* OpenGLBullet3DTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9F92E3D1E8F33E200D72A4F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9F92E461E8F33E200D72A4F /* OpenGLBullet3DUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E9F92E381E8F33E200D72A4F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E9F92E151E8F33E200D72A4F /* OpenGLBullet3D */;
+			targetProxy = E9F92E371E8F33E200D72A4F /* PBXContainerItemProxy */;
+		};
+		E9F92E431E8F33E200D72A4F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E9F92E151E8F33E200D72A4F /* OpenGLBullet3D */;
+			targetProxy = E9F92E421E8F33E200D72A4F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E9F92E291E8F33E200D72A4F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E9F92E2A1E8F33E200D72A4F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E9F92E2E1E8F33E200D72A4F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E9F92E2F1E8F33E200D72A4F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E9F92E481E8F33E200D72A4F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E9F92E491E8F33E200D72A4F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E9F92E4B1E8F33E200D72A4F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7RKQS9TN9B;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/OpenGLBullet3D";
+				INFOPLIST_FILE = OpenGLBullet3D/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OpenGLBullet3D",
+					"$(PROJECT_DIR)/OpenGLBullet3D/Libs",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cedj.OpenGLBullet3D;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E9F92E4C1E8F33E200D72A4F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7RKQS9TN9B;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/OpenGLBullet3D";
+				INFOPLIST_FILE = OpenGLBullet3D/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OpenGLBullet3D",
+					"$(PROJECT_DIR)/OpenGLBullet3D/Libs",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cedj.OpenGLBullet3D;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E9F92E4E1E8F33E200D72A4F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 7RKQS9TN9B;
+				INFOPLIST_FILE = OpenGLBullet3DTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cedj.OpenGLBullet3DTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenGLBullet3D.app/OpenGLBullet3D";
+			};
+			name = Debug;
+		};
+		E9F92E4F1E8F33E200D72A4F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 7RKQS9TN9B;
+				INFOPLIST_FILE = OpenGLBullet3DTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cedj.OpenGLBullet3DTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenGLBullet3D.app/OpenGLBullet3D";
+			};
+			name = Release;
+		};
+		E9F92E511E8F33E200D72A4F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 7RKQS9TN9B;
+				INFOPLIST_FILE = OpenGLBullet3DUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cedj.OpenGLBullet3DUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = OpenGLBullet3D;
+			};
+			name = Debug;
+		};
+		E9F92E521E8F33E200D72A4F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 7RKQS9TN9B;
+				INFOPLIST_FILE = OpenGLBullet3DUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cedj.OpenGLBullet3DUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = OpenGLBullet3D;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E9F92E111E8F33E200D72A4F /* Build configuration list for PBXProject "OpenGLBullet3D" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9F92E481E8F33E200D72A4F /* Debug */,
+				E9F92E491E8F33E200D72A4F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E9F92E4A1E8F33E200D72A4F /* Build configuration list for PBXNativeTarget "OpenGLBullet3D" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9F92E4B1E8F33E200D72A4F /* Debug */,
+				E9F92E4C1E8F33E200D72A4F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E9F92E4D1E8F33E200D72A4F /* Build configuration list for PBXNativeTarget "OpenGLBullet3DTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9F92E4E1E8F33E200D72A4F /* Debug */,
+				E9F92E4F1E8F33E200D72A4F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E9F92E501E8F33E200D72A4F /* Build configuration list for PBXNativeTarget "OpenGLBullet3DUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9F92E511E8F33E200D72A4F /* Debug */,
+				E9F92E521E8F33E200D72A4F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E9F92E0E1E8F33E200D72A4F /* Project object */;
+}
