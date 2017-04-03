@@ -78,13 +78,24 @@ GLfloat gCubeVertexData[216] =
 
 @interface GameViewController () {
     GLuint _program;
-    
-    GLKMatrix4 _modelViewProjectionMatrix;
-    GLKMatrix3 _normalMatrix;
-    BulletPhysics *bp;
-    
     GLuint _vertexArray;
     GLuint _vertexBuffer;
+    int _assignmentVersion;
+    
+    //Sphere
+    GLKMatrix4 _modelViewProjectionMatrix;
+    GLKMatrix3 _normalMatrix;
+    
+    //Floor
+    GLKMatrix4 _floorModelViewProjectionMatrix;
+    GLKMatrix3 _floorNormalMatrix;
+    
+    //Physics
+    BulletPhysics *_bulletPhysics;
+    
+    //Part 1
+    
+    //Part 2
 }
 @property (strong, nonatomic) EAGLContext *context;
 @property (strong, nonatomic) GLKBaseEffect *effect;
@@ -108,7 +119,12 @@ GLfloat gCubeVertexData[216] =
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    bp = [[BulletPhysics alloc] init];
+    _assignmentVersion = 2;
+    if (_assignmentVersion == 1) {
+        _bulletPhysics = [[BulletPhysics alloc] initForPartOne];
+    } else {
+        _bulletPhysics = [[BulletPhysics alloc] initForPartTwo:45.0];
+    }
     
     self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     
@@ -201,8 +217,8 @@ GLfloat gCubeVertexData[216] =
 - (void)update
 {
     
-    if (bp) {
-        [bp Update:self.timeSinceLastUpdate];
+    if (_bulletPhysics) {
+        [_bulletPhysics Update:self.timeSinceLastUpdate];
     }
     
     float aspect = fabs(self.view.bounds.size.width / self.view.bounds.size.height);
@@ -211,23 +227,43 @@ GLfloat gCubeVertexData[216] =
     self.effect.transform.projectionMatrix = projectionMatrix;
     
     //World matrix
-    GLKMatrix4 baseModelViewMatrix = GLKMatrix4MakeTranslation(0.0, 0.0, -4.0);
+    GLKMatrix4 baseModelViewMatrix = GLKMatrix4MakeTranslation(0.0, 0.0, -10.0);
     //Rotate world
-    //baseModelViewMatrix = GLKMatrix4Rotate(baseModelViewMatrix, 0.0, 0.0f, 1.0f, 0.0f);
     
-    // Cube start position/current position
-    GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0, 0.0, 0.0);
-    // Cube scale
-    modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, 1.0, 1.0, 1.0);
-    // Cube rotation
-    modelViewMatrix = GLKMatrix4RotateX(modelViewMatrix, 0.0);
-    modelViewMatrix = GLKMatrix4RotateY(modelViewMatrix, 0.0);
-    modelViewMatrix = GLKMatrix4RotateZ(modelViewMatrix, 0.0);
-    // Multiplies rotation by translationg to give current transform
+    //Ball
+    float ballX = _bulletPhysics->ballPosition[0];
+    float ballY = _bulletPhysics->ballPosition[1];
+    float ballZ = _bulletPhysics->ballPosition[2];
+    GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(ballX, ballY, ballZ);
     modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
-    
     _normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelViewMatrix), NULL);
     _modelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
+    
+    //Part 1
+    if (_assignmentVersion == 1) {
+        //Floor
+        modelViewMatrix = GLKMatrix4Identity;
+        modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, 6.0, 1.0, 3.0);
+        modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, 0.0, -4.0, 0.0);
+        modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
+        _floorNormalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelViewMatrix), NULL);
+        _floorModelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
+    }
+    //Part 2
+    else {
+        //Floor
+        float floorX = _bulletPhysics->floorPosition[0];
+        float floorY = _bulletPhysics->floorPosition[1];
+        float floorZ = _bulletPhysics->floorPosition[2];
+        modelViewMatrix = GLKMatrix4Identity;
+        modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, 1.0, 1.0, 1.0);
+        modelViewMatrix = GLKMatrix4RotateZ(modelViewMatrix, GLKMathDegreesToRadians(45));
+        modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, floorX, floorY, floorZ);
+        modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
+        _floorNormalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelViewMatrix), NULL);
+        _floorModelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
+    }
+    
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
@@ -240,10 +276,24 @@ GLfloat gCubeVertexData[216] =
     // Render the object again with ES2
     glUseProgram(_program);
     
+    //Render Sphere
     glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, _modelViewProjectionMatrix.m);
     glUniformMatrix3fv(uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, _normalMatrix.m);
-    
     glDrawArrays(GL_TRIANGLES, 0, 36);
+    
+    //Render Floor
+    glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, _floorModelViewProjectionMatrix.m);
+    glUniformMatrix3fv(uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, _floorNormalMatrix.m);
+    glDrawArrays(GL_TRIANGLES, 0, 36);
+    
+    //Part 1
+    if (_assignmentVersion == 1) {
+    }
+    //Part 2
+    else {
+        
+    }
+    
 }
 
 #pragma mark -  OpenGL ES 2 shader compilation

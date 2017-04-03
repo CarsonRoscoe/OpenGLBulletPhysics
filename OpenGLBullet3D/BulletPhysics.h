@@ -8,8 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BulletPhysics: NSObject
+@interface BulletPhysics: NSObject {
+@public
+    float ballPosition[3];
+    float floorPosition[3];
+}
 
+- (instancetype)initForPartOne;
+- (instancetype)initForPartTwo:(float)angle;
 -(void)Update:(float)elapsedTime;
 
 @end
