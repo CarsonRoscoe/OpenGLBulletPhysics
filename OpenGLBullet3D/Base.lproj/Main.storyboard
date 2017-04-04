@@ -22,9 +22,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.77740446891191706" green="0.77740446891191706" blue="0.77740446891191706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="V9x-ip-Sss" appends="YES" id="2rE-9T-znP"/>
+                            <outletCollection property="gestureRecognizers" destination="tFt-cZ-FCT" appends="YES" id="FBP-XJ-xr2"/>
+                            <outletCollection property="gestureRecognizers" destination="FWy-SS-1IO" appends="YES" id="vVZ-pB-jyr"/>
+                            <outletCollection property="gestureRecognizers" destination="nZl-jV-yzw" appends="YES" id="Zcq-hU-Ghw"/>
+                            <outletCollection property="gestureRecognizers" destination="3JS-4B-Wm7" appends="YES" id="QXt-lf-qFc"/>
+                        </connections>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="up" id="V9x-ip-Sss" userLabel="swipeUp">
+                    <connections>
+                        <action selector="swipeUp:" destination="BV1-FR-VrT" id="b8Q-pv-EwR"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="down" id="tFt-cZ-FCT" userLabel="swipeDown">
+                    <connections>
+                        <action selector="swipeOut:" destination="BV1-FR-VrT" id="0sl-uM-qkW"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="FWy-SS-1IO" userLabel="doubleTapGesture">
+                    <connections>
+                        <action selector="doubleTapGesture:" destination="BV1-FR-VrT" id="xhO-F4-h7T"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="3" id="nZl-jV-yzw" userLabel="tripleTapGesture">
+                    <connections>
+                        <action selector="tripleTapGesture:" destination="BV1-FR-VrT" id="Rp3-Mh-ihv"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="3JS-4B-Wm7" userLabel="tapGesture">
+                    <connections>
+                        <action selector="tapGesture:" destination="BV1-FR-VrT" id="q41-eY-XR6"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="61.600000000000001" y="136.28185907046478"/>
         </scene>

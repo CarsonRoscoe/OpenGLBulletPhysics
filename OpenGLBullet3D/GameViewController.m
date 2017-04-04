@@ -82,6 +82,7 @@ GLfloat gCubeVertexData[216] =
     GLuint _vertexArray;
     GLuint _vertexBuffer;
     int _assignmentVersion;
+    bool _inMotion;
     
     //Sphere
     GLKMatrix4 _modelViewProjectionMatrix;
@@ -106,17 +107,17 @@ GLfloat gCubeVertexData[216] =
 @property (strong, nonatomic) GLKBaseEffect *effect;
 
 - (void)setupGL;
+- (IBAction)tripleTapGesture:(id)sender;
 - (void)tearDownGL;
+- (IBAction)doubleTapGesture:(id)sender;
 
+- (IBAction)tapGesture:(id)sender;
+- (IBAction)swipeUp:(UISwipeGestureRecognizer *)sender;
+- (IBAction)swipeOut:(id)sender;
 - (BOOL)loadShaders;
 - (BOOL)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file;
 - (BOOL)linkProgram:(GLuint)prog;
 - (BOOL)validateProgram:(GLuint)prog;
-- (IBAction)handlePinch:(UIPinchGestureRecognizer *)pinch;
-- (IBAction)handleSingleDrag:(UIPanGestureRecognizer *)pan;
-- (IBAction)handleDoubleDrag:(UIPanGestureRecognizer *)pan;
-- (IBAction)handleDoubleTap:(UIGestureRecognizer *) recognizer;
-- (IBAction)tapGestureHandler:(UITapGestureRecognizer*)sender;
 @end
 
 @implementation GameViewController
@@ -124,32 +125,20 @@ GLfloat gCubeVertexData[216] =
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _assignmentVersion = 2;
-    _platformAngle = -55.0;
-    
-    /*_floorOffset[0] = (1 - cosf(GLKMathDegreesToRadians(fabsf(_platformAngle))));
-    _floorOffset[1] = sinf(GLKMathDegreesToRadians(fabsf(_platformAngle)));
-    
-    float rotatedX = cos(_platformAngle) - sin(_platformAngle);
-    float rotatedY = sin(_platformAngle) + cos(_platformAngle);
-    
-    _floorOffset[0] = 1 - rotatedX;
-    _floorOffset[1] = 1 - rotatedY;*/
+    _inMotion = false;
+    _assignmentVersion = 1;
+    _bulletPhysics = [[BulletPhysics alloc] initForPartOneNoMotion];
+    _platformAngle = -30.0;
     
     GLKMatrix4 rotation = GLKMatrix4MakeTranslation(-1.5, -4.0, 0.0);
     rotation = GLKMatrix4RotateZ(rotation, GLKMathDegreesToRadians(_platformAngle));
     rotation = GLKMatrix4Scale(rotation, 4.0, 4.0, 1.0);
     GLKVector3 point = GLKVector3Make(0.5, 0.5, 0);
     point = GLKMatrix4MultiplyVector3(rotation, point);
-    
     _floorOffset[0] = - (point.x - 2.0);
     _floorOffset[1] = - (point.y - 2.0);
     NSLog(@"\n%f %f", _floorOffset[0], _floorOffset[1]);
-    if (_assignmentVersion == 1) {
-        _bulletPhysics = [[BulletPhysics alloc] initForPartOne];
-    } else {
-        _bulletPhysics = [[BulletPhysics alloc] initForPartTwo:_platformAngle offsetX:_floorOffset[0] offsetY:_floorOffset[1]];
-    }
+    
     
     self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     
@@ -222,6 +211,15 @@ GLfloat gCubeVertexData[216] =
     glBindVertexArrayOES(0);
 }
 
+- (IBAction)tripleTapGesture:(id)sender {
+    NSLog(@"Swap Parts");
+    //Swap
+    _assignmentVersion = _assignmentVersion == 1 ? 2 : 1;
+    
+    //Reset
+    [self doubleTapGesture:self];
+}
+
 - (void)tearDownGL
 {
     [EAGLContext setCurrentContext:self.context];
@@ -234,6 +232,64 @@ GLfloat gCubeVertexData[216] =
     if (_program) {
         glDeleteProgram(_program);
         _program = 0;
+    }
+}
+
+//Reset
+- (IBAction)doubleTapGesture:(id)sender {
+    _inMotion = false;
+    _bulletPhysics = nil;
+    NSLog(@"Reset");
+    if (_assignmentVersion == 1) {
+        _bulletPhysics = [[BulletPhysics alloc] initForPartOneNoMotion];
+    } else {
+        _bulletPhysics = [[BulletPhysics alloc] initForPartTwoNoMotion:_platformAngle offsetX:_floorOffset[0] offsetY:_floorOffset[1]];
+    }
+}
+
+//Start if in motion
+- (IBAction)tapGesture:(id)sender {
+    if (!_inMotion) {
+        NSLog(@"Start Motion");
+        if (_assignmentVersion == 1) {
+            _bulletPhysics = [[BulletPhysics alloc] initForPartOne];
+        } else {
+            _bulletPhysics = [[BulletPhysics alloc] initForPartTwo:_platformAngle offsetX:_floorOffset[0] offsetY:_floorOffset[1]];
+        }
+        _inMotion = true;
+    }
+}
+
+- (IBAction)swipeUp:(UISwipeGestureRecognizer *)sender {
+    if (!_inMotion && _assignmentVersion == 2) {
+        NSLog(@"Raise Slope");
+        if (_platformAngle > -85) {
+            _platformAngle -= 5;
+        }
+        GLKMatrix4 rotation = GLKMatrix4MakeTranslation(-1.5, -4.0, 0.0);
+        rotation = GLKMatrix4RotateZ(rotation, GLKMathDegreesToRadians(_platformAngle));
+        rotation = GLKMatrix4Scale(rotation, 4.0, 4.0, 1.0);
+        GLKVector3 point = GLKVector3Make(0.5, 0.5, 0);
+        point = GLKMatrix4MultiplyVector3(rotation, point);
+        _floorOffset[0] = - (point.x - 2.0);
+        _floorOffset[1] = - (point.y - 2.0);
+        _bulletPhysics = [[BulletPhysics alloc] initForPartTwoNoMotion:_platformAngle offsetX:_floorOffset[0] offsetY:_floorOffset[1]];
+    }
+}
+
+- (IBAction)swipeOut:(id)sender {
+    if (!_inMotion && _assignmentVersion == 2) {
+        if (_platformAngle < -5) {
+            _platformAngle += 5;
+        }
+        GLKMatrix4 rotation = GLKMatrix4MakeTranslation(-1.5, -4.0, 0.0);
+        rotation = GLKMatrix4RotateZ(rotation, GLKMathDegreesToRadians(_platformAngle));
+        rotation = GLKMatrix4Scale(rotation, 4.0, 4.0, 1.0);
+        GLKVector3 point = GLKVector3Make(0.5, 0.5, 0);
+        point = GLKMatrix4MultiplyVector3(rotation, point);
+        _floorOffset[0] = - (point.x - 2.0);
+        _floorOffset[1] = - (point.y - 2.0);
+        _bulletPhysics = [[BulletPhysics alloc] initForPartTwoNoMotion:_platformAngle offsetX:_floorOffset[0] offsetY:_floorOffset[1]];
     }
 }
 

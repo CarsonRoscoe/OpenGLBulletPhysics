@@ -14,6 +14,8 @@
     float floorPosition[3];
 }
 
+- (instancetype)initForPartOneNoMotion;
+- (instancetype)initForPartTwoNoMotion:(float)angle offsetX:(float)offsetX offsetY:(float)offsetY;
 - (instancetype)initForPartOne;
 - (instancetype)initForPartTwo:(float)angle offsetX:(float)offsetX offsetY:(float)offsetY;
 -(void)Update:(float)elapsedTime;
