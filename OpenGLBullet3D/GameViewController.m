@@ -96,6 +96,7 @@ GLfloat gCubeVertexData[216] =
     //Part 1
     
     //Part 2
+    float _platformAngle;
 }
 @property (strong, nonatomic) EAGLContext *context;
 @property (strong, nonatomic) GLKBaseEffect *effect;
@@ -120,10 +121,11 @@ GLfloat gCubeVertexData[216] =
 {
     [super viewDidLoad];
     _assignmentVersion = 2;
+    _platformAngle = 45.0;
     if (_assignmentVersion == 1) {
         _bulletPhysics = [[BulletPhysics alloc] initForPartOne];
     } else {
-        _bulletPhysics = [[BulletPhysics alloc] initForPartTwo:45.0];
+        _bulletPhysics = [[BulletPhysics alloc] initForPartTwo:_platformAngle];
     }
     
     self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
@@ -256,9 +258,10 @@ GLfloat gCubeVertexData[216] =
         float floorY = _bulletPhysics->floorPosition[1];
         float floorZ = _bulletPhysics->floorPosition[2];
         modelViewMatrix = GLKMatrix4Identity;
-        modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, 1.0, 1.0, 1.0);
-        modelViewMatrix = GLKMatrix4RotateZ(modelViewMatrix, GLKMathDegreesToRadians(45));
-        modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, floorX, floorY, floorZ);
+        GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(floorX, floorY, floorZ);
+        //modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, 1.0, 1.0, 1.0);
+        modelViewMatrix = GLKMatrix4RotateZ(modelViewMatrix, GLKMathDegreesToRadians(_platformAngle));
+        //modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, floorX, floorY, floorZ);
         modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
         _floorNormalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelViewMatrix), NULL);
         _floorModelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);

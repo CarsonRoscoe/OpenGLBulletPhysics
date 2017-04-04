@@ -92,11 +92,10 @@
         boxHalfExtends.setX(1);
         boxHalfExtends.setY(1);
         boxHalfExtends.setZ(1);
-    
         
         groundShape = new btBoxShape(boxHalfExtends);
         
-        fallShape = new btSphereShape(1);
+        fallShape = new btSphereShape(0.5);
         
         btQuaternion groundQuat = btQuaternion(0,0,0,1);
         groundQuat.setEuler(0, 0, angle);
@@ -108,7 +107,6 @@
         groundRigidBody->setRestitution(0.2);
         dynamicsWorld->addRigidBody(groundRigidBody);
         
-        // change this to start sphere in a different location
         fallMotionState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(-3,5,0)));
         btScalar mass = 1;
         btVector3 fallInertia(0,0,0);
