@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E92BFFF91E94495B001D2FA5 /* Texture2.png in Resources */ = {isa = PBXBuildFile; fileRef = E92BFFF61E94495B001D2FA5 /* Texture2.png */; };
+		E92BFFFA1E94495B001D2FA5 /* Texture3.png in Resources */ = {isa = PBXBuildFile; fileRef = E92BFFF71E94495B001D2FA5 /* Texture3.png */; };
+		E92BFFFB1E94495B001D2FA5 /* Texture4.png in Resources */ = {isa = PBXBuildFile; fileRef = E92BFFF81E94495B001D2FA5 /* Texture4.png */; };
+		E9A870311E9445C400204148 /* Texture1.png in Resources */ = {isa = PBXBuildFile; fileRef = E9A870301E9445C400204148 /* Texture1.png */; };
 		E9F92E1B1E8F33E200D72A4F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F92E1A1E8F33E200D72A4F /* main.m */; };
 		E9F92E1E1E8F33E200D72A4F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F92E1D1E8F33E200D72A4F /* AppDelegate.m */; };
 		E9F92E281E8F33E200D72A4F /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F92E271E8F33E200D72A4F /* GameViewController.m */; };
@@ -44,6 +48,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E92BFFF61E94495B001D2FA5 /* Texture2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture2.png; sourceTree = "<group>"; };
+		E92BFFF71E94495B001D2FA5 /* Texture3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture3.png; sourceTree = "<group>"; };
+		E92BFFF81E94495B001D2FA5 /* Texture4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture4.png; sourceTree = "<group>"; };
+		E9A870301E9445C400204148 /* Texture1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture1.png; sourceTree = "<group>"; };
 		E9F92E161E8F33E200D72A4F /* OpenGLBullet3D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenGLBullet3D.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9F92E1A1E8F33E200D72A4F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E9F92E1C1E8F33E200D72A4F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -138,6 +146,10 @@
 		E9F92E181E8F33E200D72A4F /* OpenGLBullet3D */ = {
 			isa = PBXGroup;
 			children = (
+				E92BFFF61E94495B001D2FA5 /* Texture2.png */,
+				E92BFFF71E94495B001D2FA5 /* Texture3.png */,
+				E92BFFF81E94495B001D2FA5 /* Texture4.png */,
+				E9A870301E9445C400204148 /* Texture1.png */,
 				E9F92E631E8F5B4900D72A4F /* BulletPhysics.h */,
 				E9F92E641E8F5B4900D72A4F /* BulletPhysics.mm */,
 				E9F92E531E8F34FA00D72A4F /* Shader.fsh */,
@@ -307,13 +319,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E92BFFF91E94495B001D2FA5 /* Texture2.png in Resources */,
 				E9F92E551E8F34FA00D72A4F /* Shader.fsh in Resources */,
 				E9F92E2B1E8F33E200D72A4F /* Main.storyboard in Resources */,
+				E92BFFFA1E94495B001D2FA5 /* Texture3.png in Resources */,
+				E92BFFFB1E94495B001D2FA5 /* Texture4.png in Resources */,
 				E9F92E2D1E8F33E200D72A4F /* Assets.xcassets in Resources */,
 				E9F92E301E8F33E200D72A4F /* LaunchScreen.storyboard in Resources */,
 				E9F92EAD1E8F633900D72A4F /* BulletDynamics in Resources */,
 				E9F92E561E8F34FA00D72A4F /* Shader.vsh in Resources */,
 				E9F92EAC1E8F633900D72A4F /* BulletCollision in Resources */,
+				E9A870311E9445C400204148 /* Texture1.png in Resources */,
 				E9F92EAE1E8F633900D72A4F /* LinearMath in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -594,6 +610,7 @@
 				E9F92E4C1E8F33E200D72A4F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E9F92E4D1E8F33E200D72A4F /* Build configuration list for PBXNativeTarget "OpenGLBullet3DTests" */ = {
 			isa = XCConfigurationList;
@@ -602,6 +619,7 @@
 				E9F92E4F1E8F33E200D72A4F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E9F92E501E8F33E200D72A4F /* Build configuration list for PBXNativeTarget "OpenGLBullet3DUITests" */ = {
 			isa = XCConfigurationList;
@@ -610,6 +628,7 @@
 				E9F92E521E8F33E200D72A4F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

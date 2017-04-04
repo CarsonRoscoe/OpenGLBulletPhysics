@@ -12,6 +12,7 @@
 @public
     float ballPosition[3];
     float floorPosition[3];
+    float ballRotation;
 }
 
 - (instancetype)initForPartOneNoMotion;

@@ -34,6 +34,7 @@
     btDefaultMotionState *rightWallGroundMotionState;
     btRigidBody *rightWallGroundRigidBody;
     int part;
+    float lastRotation;
 }
 
 @end
@@ -42,7 +43,6 @@
 
 - (instancetype)initForPartOne
 {
-    NSLog(@"PartOne - Motion");
     self = [super init];
     part = 1;
     if (self) {
@@ -77,15 +77,12 @@
         fallRigidBody = new btRigidBody(fallRigidBodyCI);
         fallRigidBody->setRestitution(0.9);
         dynamicsWorld->addRigidBody(fallRigidBody);
-        
-        NSLog(@"Starting bullet physics...\n");
     }
     return self;
 }
 
 - (instancetype)initForPartTwo:(float)angle offsetX:(float)offsetX offsetY:(float)offsetY
 {
-    NSLog(@"PartTwo - Motion");
     self = [super init];
     part = 2;
     if (self) {
@@ -153,31 +150,29 @@
         fallRigidBody = new btRigidBody(fallRigidBodyCI);
         fallRigidBody->setRestitution(0.1);
         dynamicsWorld->addRigidBody(fallRigidBody);
-        
-        NSLog(@"Starting bullet physics...\n");
     }
     return self;
 }
 
 - (instancetype)initForPartOneNoMotion {
-    NSLog(@"PartOne - No Motion");
     ballPosition[0] = 0;
     ballPosition[1] = 5;
     ballPosition[2] = 0;
     floorPosition[0] = 0;
     floorPosition[1] = -5;
     floorPosition[2] = 0;
+    ballRotation = 0;
     return self;
 }
 
 - (instancetype)initForPartTwoNoMotion:(float)angle offsetX:(float)offsetX offsetY:(float)offsetY {
-    NSLog(@"PartTwo - No Motion");
     ballPosition[0] = -1;
     ballPosition[1] = 5;
     ballPosition[2] = 0;
     floorPosition[0] = -1.5 + offsetX;
     floorPosition[1] = -4.0 + offsetY;
     floorPosition[2] = 0;
+    ballRotation = 0;
     return self;
 }
 
@@ -219,7 +214,6 @@
         delete collisionConfiguration;
         delete dispatcher;
         delete broadphase;
-        NSLog(@"Ending bullet physics...\n");
     }
 }
 
@@ -233,6 +227,12 @@
         ballPosition[0] = trans.getOrigin().getX();
         ballPosition[1] = trans.getOrigin().getY();
         ballPosition[2] = trans.getOrigin().getZ();
+        
+        if (part == 2) {
+            btVector3 velocity = fallRigidBody->getLinearVelocity();
+            ballRotation -= velocity.x() / 30.0;
+        }
+        
         groundRigidBody->getMotionState()->getWorldTransform(trans);
         floorPosition[0] = trans.getOrigin().getX();
         floorPosition[1] = trans.getOrigin().getY();

@@ -1,29 +1,18 @@
-//
-//  Shader.vsh
-//  Assignment1
-//
-//  Created by Carson Roscoe on 2017-02-08.
-//  Copyright © 2017 Carson Roscoe. All rights reserved.
-//
-
+precision mediump float;
 attribute vec4 position;
 attribute vec3 normal;
-
-varying lowp vec4 colorVarying;
-
+attribute vec2 texCoordIn;
+varying vec3 eyeNormal;
+varying vec4 eyePos;
+varying vec2 texCoordOut;
 uniform mat4 modelViewProjectionMatrix;
+uniform mat4 modelViewMatrix;
 uniform mat3 normalMatrix;
-uniform vec3 color;
 
 void main()
 {
-    vec3 eyeNormal = normalize(normalMatrix * normal);
-    vec3 lightPosition = vec3(0.0, 0.0, 1.0);
-    vec4 diffuseColor = vec4(color.r, color.g, color.b, 1.0);
-    
-    float nDotVP = max(0.0, dot(eyeNormal, normalize(lightPosition)));
-                 
-    colorVarying = diffuseColor * nDotVP;
-    
+    eyeNormal = (normalMatrix * normal);
+    eyePos = modelViewMatrix * position;
+    texCoordOut = texCoordIn;
     gl_Position = modelViewProjectionMatrix * position;
 }
