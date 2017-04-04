@@ -17,6 +17,7 @@ enum
 {
     UNIFORM_MODELVIEWPROJECTION_MATRIX,
     UNIFORM_NORMAL_MATRIX,
+    UNIFORM_COLOR,
     NUM_UNIFORMS
 };
 GLint uniforms[NUM_UNIFORMS];
@@ -96,7 +97,10 @@ GLfloat gCubeVertexData[216] =
     //Part 1
     
     //Part 2
+    GLKMatrix4 _boxModelViewProjectionMatrix[4];
+    GLKMatrix3 _boxNormalMatrix[4];
     float _platformAngle;
+    float _floorOffset[2];
 }
 @property (strong, nonatomic) EAGLContext *context;
 @property (strong, nonatomic) GLKBaseEffect *effect;
@@ -121,11 +125,30 @@ GLfloat gCubeVertexData[216] =
 {
     [super viewDidLoad];
     _assignmentVersion = 2;
-    _platformAngle = 45.0;
+    _platformAngle = -55.0;
+    
+    /*_floorOffset[0] = (1 - cosf(GLKMathDegreesToRadians(fabsf(_platformAngle))));
+    _floorOffset[1] = sinf(GLKMathDegreesToRadians(fabsf(_platformAngle)));
+    
+    float rotatedX = cos(_platformAngle) - sin(_platformAngle);
+    float rotatedY = sin(_platformAngle) + cos(_platformAngle);
+    
+    _floorOffset[0] = 1 - rotatedX;
+    _floorOffset[1] = 1 - rotatedY;*/
+    
+    GLKMatrix4 rotation = GLKMatrix4MakeTranslation(-1.5, -4.0, 0.0);
+    rotation = GLKMatrix4RotateZ(rotation, GLKMathDegreesToRadians(_platformAngle));
+    rotation = GLKMatrix4Scale(rotation, 4.0, 4.0, 1.0);
+    GLKVector3 point = GLKVector3Make(0.5, 0.5, 0);
+    point = GLKMatrix4MultiplyVector3(rotation, point);
+    
+    _floorOffset[0] = - (point.x - 2.0);
+    _floorOffset[1] = - (point.y - 2.0);
+    NSLog(@"\n%f %f", _floorOffset[0], _floorOffset[1]);
     if (_assignmentVersion == 1) {
         _bulletPhysics = [[BulletPhysics alloc] initForPartOne];
     } else {
-        _bulletPhysics = [[BulletPhysics alloc] initForPartTwo:_platformAngle];
+        _bulletPhysics = [[BulletPhysics alloc] initForPartTwo:_platformAngle offsetX:_floorOffset[0] offsetY:_floorOffset[1]];
     }
     
     self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
@@ -257,14 +280,42 @@ GLfloat gCubeVertexData[216] =
         float floorX = _bulletPhysics->floorPosition[0];
         float floorY = _bulletPhysics->floorPosition[1];
         float floorZ = _bulletPhysics->floorPosition[2];
-        modelViewMatrix = GLKMatrix4Identity;
+        //modelViewMatrix = GLKMatrix4Identity;
         GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(floorX, floorY, floorZ);
-        //modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, 1.0, 1.0, 1.0);
         modelViewMatrix = GLKMatrix4RotateZ(modelViewMatrix, GLKMathDegreesToRadians(_platformAngle));
+        modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, 4.0, 4.0, 1.0);
         //modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, floorX, floorY, floorZ);
         modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
         _floorNormalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelViewMatrix), NULL);
         _floorModelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
+        
+        //Box - leftWall
+        modelViewMatrix = GLKMatrix4MakeTranslation(0.0, -3.0, 0.0);
+        modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, 1.0, 2.0, 1.0);
+        modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
+        _boxNormalMatrix[0] = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelViewMatrix), NULL);
+        _boxModelViewProjectionMatrix[0] = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
+        
+        //Box - rightWall
+        modelViewMatrix = GLKMatrix4MakeTranslation(4.0, -3.0, 0.0);
+        modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, 1.0, 2.0, 1.0);
+        modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
+        _boxNormalMatrix[1] = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelViewMatrix), NULL);
+        _boxModelViewProjectionMatrix[1] = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
+        
+        //Box - bottomFloor
+        modelViewMatrix = GLKMatrix4MakeTranslation(2.0, -4.5, 0.0);
+        modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, 5.0, 1.0, 1.0);
+        modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
+        _boxNormalMatrix[2] = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelViewMatrix), NULL);
+        _boxModelViewProjectionMatrix[2] = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
+        
+        //Box - backWall
+        modelViewMatrix = GLKMatrix4MakeTranslation(2.0, -3.0, -1.0);
+        modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, 5.0, 2.0, 1.0);
+        modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
+        _boxNormalMatrix[3] = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelViewMatrix), NULL);
+        _boxModelViewProjectionMatrix[3] = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
     }
     
 }
@@ -282,11 +333,13 @@ GLfloat gCubeVertexData[216] =
     //Render Sphere
     glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, _modelViewProjectionMatrix.m);
     glUniformMatrix3fv(uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, _normalMatrix.m);
+    glUniform3f(uniforms[UNIFORM_COLOR], 0.2, 0.4, 1.0);
     glDrawArrays(GL_TRIANGLES, 0, 36);
     
     //Render Floor
     glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, _floorModelViewProjectionMatrix.m);
     glUniformMatrix3fv(uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, _floorNormalMatrix.m);
+    glUniform3f(uniforms[UNIFORM_COLOR], 0.2, 1.0, 0.4);
     glDrawArrays(GL_TRIANGLES, 0, 36);
     
     //Part 1
@@ -294,7 +347,12 @@ GLfloat gCubeVertexData[216] =
     }
     //Part 2
     else {
-        
+        for(int i = 0; i < 4; i++) {
+            glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, _boxModelViewProjectionMatrix[i].m);
+            glUniformMatrix3fv(uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, _boxNormalMatrix[i].m);
+            glUniform3f(uniforms[UNIFORM_COLOR], 1.0, 0.4, 0.2);
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+        }
     }
     
 }
@@ -357,6 +415,7 @@ GLfloat gCubeVertexData[216] =
     // Get uniform locations.
     uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX] = glGetUniformLocation(_program, "modelViewProjectionMatrix");
     uniforms[UNIFORM_NORMAL_MATRIX] = glGetUniformLocation(_program, "normalMatrix");
+    uniforms[UNIFORM_COLOR] = glGetUniformLocation(_program, "color");
     
     // Release vertex and fragment shaders.
     if (vertShader) {

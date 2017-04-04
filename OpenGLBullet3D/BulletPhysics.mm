@@ -8,6 +8,7 @@
 
 #import "BulletPhysics.h"
 #include "btBulletDynamicsCommon.h"
+#include <GLKit/GLKit.h>
 
 @interface BulletPhysics()
 {
@@ -49,7 +50,6 @@
         
         fallShape = new btSphereShape(1);
         
-        
         groundMotionState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(0,-5,0)));
         btRigidBody::btRigidBodyConstructionInfo
         groundRigidBodyCI(0,groundMotionState,groundShape,btVector3(0,0,0));
@@ -72,7 +72,7 @@
     return self;
 }
 
-- (instancetype)initForPartTwo:(float)angle
+- (instancetype)initForPartTwo:(float)angle offsetX:(float)offsetX offsetY:(float)offsetY
 {
     self = [super init];
     part = 2;
@@ -89,31 +89,32 @@
         dynamicsWorld->setGravity(btVector3(0,-9.81,0));
         
         btVector3 boxHalfExtends;
-        boxHalfExtends.setX(1);
-        boxHalfExtends.setY(1);
-        boxHalfExtends.setZ(1);
+        boxHalfExtends.setX(2);
+        boxHalfExtends.setY(2);
+        boxHalfExtends.setZ(0.5);
         
         groundShape = new btBoxShape(boxHalfExtends);
         
         fallShape = new btSphereShape(0.5);
         
         btQuaternion groundQuat = btQuaternion(0,0,0,1);
-        groundQuat.setEuler(0, 0, angle);
-        groundMotionState = new btDefaultMotionState(btTransform(groundQuat,btVector3(-4,0,0)));
+        groundQuat.setEulerZYX(GLKMathDegreesToRadians(angle), 0, 0);
+        
+        groundMotionState = new btDefaultMotionState(btTransform(groundQuat,btVector3(-1.5 + offsetX,-4.0 + offsetY,0)));
         btRigidBody::btRigidBodyConstructionInfo
         groundRigidBodyCI(0,groundMotionState,groundShape,btVector3(0,0,0));
         
         groundRigidBody = new btRigidBody(groundRigidBodyCI);
-        groundRigidBody->setRestitution(0.2);
+        groundRigidBody->setRestitution(0.1);
         dynamicsWorld->addRigidBody(groundRigidBody);
         
-        fallMotionState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(-3,5,0)));
+        fallMotionState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(-1,5,0)));
         btScalar mass = 1;
         btVector3 fallInertia(0,0,0);
         fallShape->calculateLocalInertia(mass,fallInertia);
         btRigidBody::btRigidBodyConstructionInfo fallRigidBodyCI(mass,fallMotionState,fallShape,fallInertia);
         fallRigidBody = new btRigidBody(fallRigidBodyCI);
-        fallRigidBody->setRestitution(0.2);
+        fallRigidBody->setRestitution(0.1);
         
         dynamicsWorld->addRigidBody(fallRigidBody);
         
@@ -160,7 +161,7 @@
     floorPosition[1] = trans.getOrigin().getY();
     floorPosition[2] = trans.getOrigin().getZ();
 
-    NSLog(@"%f %f %f", ballPosition[0], ballPosition[1], ballPosition[2]);
+    //NSLog(@"%f %f %f", ballPosition[0], ballPosition[1], ballPosition[2]);
 }
 
 

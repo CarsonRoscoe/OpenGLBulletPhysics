@@ -15,7 +15,7 @@
 }
 
 - (instancetype)initForPartOne;
-- (instancetype)initForPartTwo:(float)angle;
+- (instancetype)initForPartTwo:(float)angle offsetX:(float)offsetX offsetY:(float)offsetY;
 -(void)Update:(float)elapsedTime;
 
 @end
